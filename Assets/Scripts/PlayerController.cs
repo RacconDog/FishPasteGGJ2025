@@ -3,21 +3,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float acceleration = 5f;
-    public float deceleration = 5f;
+    public float deceleration = 10f;
     public float baseTurnSpeed = 200f; // Base turn speed
     public float maxSpeed = 10f;
     public float turnRadiusModifier = 0.5f; // Modifier for wider turning radius (0 = no adjustment, higher = wider turns)
-    public float boostMultiplier = 1.5f; // Multiplier for boosting acceleration
-    public float rotationalImpulseScale = 100f; // Scale for rotational impulse
-    public float doubleTapTime = 0.3f;  // Maximum time between double-taps
+    public float boostMultiplier = 10f; // Multiplier for boosting acceleration
 
     private Rigidbody2D rb;
     private float currentSpeed = 0f;
-    private float currentAcceleration;
 
     // Double-tap detection
     private float lastLeftPressTime = -1f;
     private float lastRightPressTime = -1f;
+    private float doubleTapTime = 0.3f;
+    public float turnForceImpulseMultiplier = 1f;
+    public float rotationalDeceleration = 5f;
 
     // Bubble references
     public GameObject bubbleshotPrefab; // Assign this in the Inspector
@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentAcceleration = acceleration; // Initialize with default acceleration
     }
 
     void Update()
@@ -34,17 +33,10 @@ public class PlayerController : MonoBehaviour
         // Get input
         float vertical = Input.GetAxis("Vertical"); // W/S
         float horizontal = Input.GetAxis("Horizontal"); // A/D
-        bool isBoosting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        bool isBoosting = Input.GetKey(KeyCode.Space);
 
         // Handle boosting
-        if (isBoosting)
-        {
-            currentAcceleration = acceleration * boostMultiplier;
-        }
-        else
-        {
-            currentAcceleration = acceleration;
-        }
+        float currentAcceleration = isBoosting ? acceleration * boostMultiplier : acceleration;
 
         // Handle acceleration and deceleration
         if (vertical > 0)
@@ -63,26 +55,24 @@ public class PlayerController : MonoBehaviour
         // Handle turning
         if (horizontal != 0)
         {
-            // Adjust turn speed based on current speed and turn radius modifier
             float adjustedTurnSpeed = baseTurnSpeed * (1 - (currentSpeed / maxSpeed) * turnRadiusModifier);
-            transform.Rotate(Vector3.forward, -horizontal * adjustedTurnSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward, -horizontal * adjustedTurnSpeed *Time.deltaTime);
         }
 
-        // Handle double-tap left for rotational impulse
         if (Input.GetKeyDown(KeyCode.A))
         {
             if (Time.time - lastLeftPressTime <= doubleTapTime)
             {
-                ApplyRotationalImpulse(-rotationalImpulseScale); // Quick rotational impulse to the left
+                rb.AddTorque(turnForceImpulseMultiplier, ForceMode2D.Impulse); // Apply torque for left turn
             }
             lastLeftPressTime = Time.time;
         }
-        // Handle double-tap right for rotational impulse
-        else if (Input.GetKeyDown(KeyCode.D))
+
+        if (Input.GetKeyDown(KeyCode.D))
         {
             if (Time.time - lastRightPressTime <= doubleTapTime)
             {
-                ApplyRotationalImpulse(rotationalImpulseScale); // Quick rotational impulse to the right
+                rb.AddTorque(-turnForceImpulseMultiplier, ForceMode2D.Impulse); // Apply torque for right turn
             }
             lastRightPressTime = Time.time;
         }
@@ -99,11 +89,12 @@ public class PlayerController : MonoBehaviour
         // Apply movement
         Vector2 direction = transform.up; // Forward direction of the player
         rb.linearVelocity = direction * currentSpeed;
-    }
 
-    private void ApplyRotationalImpulse(float impulse)
-    {
-        // Apply a rotational impulse directly to the Rigidbody2D's angular velocity
-        rb.angularVelocity += impulse;
+        // Apply rotational deceleration
+        if (Mathf.Abs(rb.angularVelocity) > 0.1f) // Only decelerate if there's significant angular velocity
+        {
+            float deceleration = rotationalDeceleration * Time.fixedDeltaTime * Mathf.Sign(rb.angularVelocity);
+            rb.angularVelocity = Mathf.MoveTowards(rb.angularVelocity, 0f, Mathf.Abs(deceleration));
+        }
     }
 }
