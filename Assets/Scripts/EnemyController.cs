@@ -6,14 +6,18 @@ using UnityEngine.Rendering;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] Transform player;
-    [SerializeField] Transform viewCone;
+    [SerializeField] public Transform player;
 
     [SerializeField] Transform[] patrolPos;
     [SerializeField] float patrolSpeed;
     [SerializeField] float patrolThreshold;
 
     [SerializeField] float chaseSpeed;
+
+    [HideInInspector] public bool isInVisionCone;
+
+    [SerializeField] LayerMask raycastLayerMask;
+    [HideInInspector] public Transform rotTarget;
 
     enum EnemyState
     {
@@ -24,11 +28,14 @@ public class EnemyController : MonoBehaviour
     int patrolIndex = 0;
     EnemyState curState = EnemyState.Patrolling;
 
-    // Update is called once per frame
+    void Awake() 
+    {
+        rotTarget = patrolPos[0];
+    }
+
     void Update()
     {
         DebugStuff();
-        // print(patrolIndex + "          " + Vector2.Distance(transform.position, patrolPos[patrolIndex].position));    
 
         if (patrolIndex > patrolPos.Length - 1) 
             {patrolIndex = 0;}
@@ -37,6 +44,7 @@ public class EnemyController : MonoBehaviour
         {
             transform.position += -(transform.position - patrolPos[patrolIndex].position).normalized * patrolSpeed * Time.deltaTime;
 
+            rotTarget = patrolPos[patrolIndex];
             if (Vector2.Distance(transform.position, patrolPos[patrolIndex].position) <= patrolThreshold)
             {
                 patrolIndex += 1;
@@ -44,17 +52,18 @@ public class EnemyController : MonoBehaviour
         }
         
         RaycastHit2D playerCheck;
-        playerCheck = Physics2D.Raycast(transform.position, player.transform.position - transform.position, math.INFINITY);
+        playerCheck = Physics2D.Raycast(transform.position, player.transform.position - transform.position, math.INFINITY, raycastLayerMask);
 
         float playerDist = Vector2.Distance(player.position, this.transform.position);
     
-        if (playerCheck && playerCheck.transform.gameObject == player.gameObject && playerDist <= viewCone.lossyScale.x / 2)
+        if (playerCheck && playerCheck.transform.gameObject == player.gameObject && isInVisionCone)
         {
             curState = EnemyState.Chase;
         }
 
         if (curState == EnemyState.Chase)
         {
+            rotTarget = player;
             transform.position += -(transform.position - player.transform.position).normalized * chaseSpeed * Time.deltaTime;
         }
     }
@@ -62,7 +71,9 @@ public class EnemyController : MonoBehaviour
     void DebugStuff()
     {
         Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
-        if (viewCone.lossyScale.x != viewCone.lossyScale.y) 
-            {Debug.LogError("WESTON |||| the viewcone isn't symetrical");}
+        // if (viewCone.lossyScale.x != viewCone.lossyScale.y) 
+        //     {Debug.LogError("WESTON |||| the viewcone isn't symetrical");}
     }
+    
+
 }
