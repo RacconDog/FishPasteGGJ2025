@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float patrolSpeed;
     [SerializeField] float patrolThreshold;
 
+    [SerializeField] float chaseSpeed;
+
     enum EnemyState
     {
         Patrolling,
@@ -48,7 +50,12 @@ public class EnemyController : MonoBehaviour
     
         if (playerCheck && playerCheck.transform.gameObject == player.gameObject && playerDist <= viewCone.lossyScale.x / 2)
         {
-            print("Chasing");
+            curState = EnemyState.Chase;
+        }
+
+        if (curState == EnemyState.Chase)
+        {
+            transform.position += -(transform.position - player.transform.position).normalized * chaseSpeed * Time.deltaTime;
         }
     }
 
