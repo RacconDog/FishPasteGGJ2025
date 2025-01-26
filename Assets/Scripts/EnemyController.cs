@@ -71,9 +71,5 @@ public class EnemyController : MonoBehaviour
     void DebugStuff()
     {
         Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
-        // if (viewCone.lossyScale.x != viewCone.lossyScale.y) 
-        //     {Debug.LogError("WESTON |||| the viewcone isn't symetrical");}
     }
-    
-
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d475f917863cc554998aac3ce995b3ca
+guid: 8a7909ce6360f7f46891646ccbd80d09
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4161137396402871490
-    second: Sunken Ship_0
+      213: 1818247743682332398
+    second: noisy-background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sunken Ship_0
+      name: noisy-background_0
       rect:
         serializedVersion: 2
-        x: 298
-        y: 77
-        width: 426
-        height: 579
+        x: 0
+        y: 0
+        width: 2000
+        height: 2000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ccdf265a645fb930800000000000000
-      internalID: 4161137396402871490
+      spriteID: ee647db70b6bb3910800000000000000
+      internalID: 1818247743682332398
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Sunken Ship_0: 4161137396402871490
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
