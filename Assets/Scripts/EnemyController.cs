@@ -6,6 +6,10 @@ using UnityEngine.Rendering;
 
 public class EnemyController : MonoBehaviour
 {
+    public float bubbleDistance = 10f;
+    [SerializeField] public Vector3 mostRecentBubble;
+    [HideInInspector] public Vector3 mostRecentBubbleDetectable;
+
     [SerializeField] public Transform player;
 
     [SerializeField] Transform[] patrolPos;
@@ -19,14 +23,16 @@ public class EnemyController : MonoBehaviour
     [SerializeField] LayerMask raycastLayerMask;
     [HideInInspector] public Transform rotTarget;
 
+    [SerializeField] GameObject qPrefab;
     enum EnemyState
     {
         Patrolling,
-        Chase
+        Chase,
+        InvistagateBubble
     }
 
     int patrolIndex = 0;
-    EnemyState curState = EnemyState.Patrolling;
+    [SerializeField] EnemyState curState = EnemyState.Patrolling;
 
     void Awake() 
     {
@@ -41,7 +47,15 @@ public class EnemyController : MonoBehaviour
             {patrolIndex = 0;}
 
         if(curState == EnemyState.Patrolling)
-        {
+        {   
+            if (mostRecentBubble != new Vector3(0,0,0) && Vector2.Distance(mostRecentBubble, transform.position) < bubbleDistance)
+            {
+                curState = EnemyState.InvistagateBubble;
+                mostRecentBubbleDetectable = mostRecentBubble;
+                Instantiate(qPrefab, transform.position, Quaternion.identity).GetComponent<QuestionMark>().follow = this.gameObject;
+                mostRecentBubble = Vector3.zero;
+            }
+
             transform.position += -(transform.position - patrolPos[patrolIndex].position).normalized * patrolSpeed * Time.deltaTime;
 
             rotTarget = patrolPos[patrolIndex];
@@ -65,6 +79,12 @@ public class EnemyController : MonoBehaviour
         {
             rotTarget = player;
             transform.position += -(transform.position - player.transform.position).normalized * chaseSpeed * Time.deltaTime;
+        }
+        if (curState == EnemyState.InvistagateBubble)
+        {
+            
+            rotTarget = player;
+            transform.position += -(transform.position - mostRecentBubbleDetectable).normalized * chaseSpeed * Time.deltaTime;
         }
     }
 
