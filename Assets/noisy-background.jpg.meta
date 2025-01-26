@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      noisy-background_0: 1818247743682332398
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
