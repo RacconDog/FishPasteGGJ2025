@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Bubbleshot : MonoBehaviour
@@ -18,9 +19,21 @@ public class Bubbleshot : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentSpeed = initialSpeed;
+    }
 
-        // Destroy the bubble after its lifetime
-        Destroy(gameObject, lifetime);
+    void Update()
+    {
+        curLifeTime += Time.deltaTime;
+        if (curLifeTime > lifetime)
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].GetComponent<EnemyController>().mostRecentBubble = transform.position;
+                Destroy(gameObject);
+            }
+        }
 
         // Ignore collision with the player object
         IgnoreFishCollision();

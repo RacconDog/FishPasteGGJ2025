@@ -13,7 +13,7 @@ public class CameraSmoothing : MonoBehaviour
         if (target == null) { target = Object.FindFirstObjectByType<PlayerController>().transform; }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 targetPosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
