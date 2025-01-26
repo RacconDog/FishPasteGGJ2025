@@ -8,6 +8,8 @@ public class Bubbleshot : MonoBehaviour
     [SerializeField] private float acceleration = 0f;      // Optional acceleration (set to 0 for constant speed)
     [SerializeField] private float deceleration = 5f;      // Rate at which the bubble slows down
     [SerializeField] private float lifetime = 5f;          // Lifetime of the bubble before it's destroyed
+    float curLifeTime = 0f;
+
 
     [Header("Effects")]
     [SerializeField] private GameObject bubblePopEffect;    // Animated sprite prefab for the bubble pop effect
@@ -19,6 +21,8 @@ public class Bubbleshot : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentSpeed = initialSpeed;
+        // Destroy the bubble after its lifetime
+        Destroy(gameObject, lifetime);
     }
 
     void Update()
