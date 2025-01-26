@@ -4,14 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement; 
 using UnityEngine.EventSystems;
 
-public class PlayButton : MonoBehaviour, IPointerDownHandler
+public class PlayButton : MonoBehaviour
 {
-    public GameObject game;
-    public GameObject Menu;
-
-    public void OnPointerDown(PointerEventData eventData)
+    public void loadScene()
     {
-        game.SetActive(true);
-        Menu.SetActive(false);
+        SceneManager.LoadScene(1);
     }
 }

@@ -233,10 +233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b6a78b2fb7ee34d9874eea0d856b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 1
+  acceleration: 2
   deceleration: 3
   baseTurnSpeed: 200
-  maxSpeed: 6
+  maxSpeed: 5
   turnRadiusModifier: 0.05
   boostMultiplier: 10
   boostDuration: 1
