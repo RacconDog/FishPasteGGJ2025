@@ -111,7 +111,8 @@ public class PlayerController : MonoBehaviour
         // Shooting the bubble
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Instantiate(bubbleshotPrefab, spawnPoint.position, transform.rotation);
+            Instantiate(bubbleshotPrefab, spawnPoint.position, spawnPoint.rotation);
+
         }
     }
 
