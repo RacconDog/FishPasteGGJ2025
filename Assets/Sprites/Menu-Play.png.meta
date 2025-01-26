@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8312cdde291ae2d4089ff522fbf2c853
+guid: f03061ea8ed1eca46b1de6d4427f90b3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -339645511759974857
-    second: Ellipse 1 (1)_0
+      213: -5829097972769814049
+    second: Menu-Play_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ellipse 1 (1)_0
+      name: Menu-Play_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 300
-        height: 404
+        x: 124
+        y: 677
+        width: 632
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 73eadf1e436594bf0800000000000000
-      internalID: -339645511759974857
+      spriteID: fd90b141742ea1fa0800000000000000
+      internalID: -5829097972769814049
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Ellipse 1 (1)_0: -339645511759974857
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
