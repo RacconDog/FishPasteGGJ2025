@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6c64a20685c754545af8eff6b9f41396
+guid: ecc35ba5faf0ced45954c7bb9a35f209
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9135381191333171299
-    second: Floor_tiles_corner_0
+      213: -1688353457011920351
+    second: grate_floor_tiles_corner_opposite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floor_tiles_corner_0
+      name: grate_floor_tiles_corner_opposite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,19 +108,15 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 32, y: 32}
-        - {x: 3, y: 32}
-        - {x: 3, y: 3}
-        - {x: 32, y: 3}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: 360d23dcac467ce70800000000000000
-      internalID: 9135381191333171299
+      spriteID: 1227083e973c198e0800000000000000
+      internalID: -1688353457011920351
       vertices: []
       indices: 
       edges: []
@@ -129,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cde14062de9053b449964430074e6c6f
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -139,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Floor_tiles_corner_0: 9135381191333171299
+      grate_floor_tiles_corner_opposite_0: -1688353457011920351
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6c64a20685c754545af8eff6b9f41396
+guid: 4846fa1ba4653324fafaaed3fc9c7b98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9135381191333171299
-    second: Floor_tiles_corner_0
+      213: -1289013712447792742
+    second: corner-grate_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -56,7 +56,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floor_tiles_corner_0
+      name: corner-grate_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,25 +112,25 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 32, y: 32}
-        - {x: 3, y: 32}
-        - {x: 3, y: 3}
-        - {x: 32, y: 3}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: 360d23dcac467ce70800000000000000
-      internalID: 9135381191333171299
+      spriteID: a9911f6abd08c1ee0800000000000000
+      internalID: -1289013712447792742
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
     customData: 
-    physicsShape: []
+    physicsShape:
+    - - {x: 32, y: 32}
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
     bones: []
-    spriteID: cde14062de9053b449964430074e6c6f
-    internalID: 0
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -139,7 +139,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Floor_tiles_corner_0: 9135381191333171299
+      corner-grate_0: -1289013712447792742
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
